@@ -17,6 +17,7 @@ from typing import Optional
 from distilabel.llms import OpenAILLM
 from distilabel.pipeline import Pipeline
 from distilabel.steps.tasks import TextGeneration
+import os
 
 
 def build_distilabel_pipeline(
@@ -40,7 +41,7 @@ def build_distilabel_pipeline(
         TextGeneration(
             llm=OpenAILLM(
                 base_url=base_url,
-                api_key="something",
+                api_key=os.getenv('OPENAI_API_KEY'),
                 model=model,
                 # thinking can take some time...
                 timeout=10 * 60,
